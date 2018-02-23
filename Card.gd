@@ -1,12 +1,16 @@
 extends Control
 
-enum LOCATIONS {
-	discard_pile,
-	draw_pile,
-	hand
-}
+#enum LOCATIONS {
+#	discard_pile,
+#	draw_pile,
+#	hand
+#}
+#
+#var 
+#
+#var location = LOCATIONS.draw_pile
 
-var location = LOCATIONS.draw_pile
+var CARD_CLASS = preload("res://Card.tscn")
 
 var type
 var chain_top = 0
@@ -16,8 +20,11 @@ var main_value = 0
 var bonuses
 var penalties
 var card_name
+var initial_data
 
 func init(dict):
+	initial_data = dict
+	
 	card_name = dict.name
 	type = dict.type
 	main_value = dict.value
@@ -48,3 +55,11 @@ func _ready():
 		penalties_str = str(penalties_str, penalty, "\n")
 
 	$"Background/Bonus-Penalties".text = str(bonus_str, penalties_str)
+
+# Drag and Drop
+func get_drag_data(pos):
+	var card = CARD_CLASS.instance()
+	card.init(initial_data)
+	card.rect_scale = Vector2(0.5, 0.5)
+	set_drag_preview(card)
+	return self
