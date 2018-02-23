@@ -1,0 +1,9 @@
+{
+	"name": "Roulade",
+	"type": "Defense",
+	"value": 0,
+	"chain_top": 0,
+	"chain_bot": 2,
+	"penalties": ["Insensible"],
+	"bonuses": []
+}
