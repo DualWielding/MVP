@@ -1,15 +1,5 @@
 extends Control
 
-#enum LOCATIONS {
-#	discard_pile,
-#	draw_pile,
-#	hand
-#}
-#
-#var 
-#
-#var location = LOCATIONS.draw_pile
-
 var CARD_CLASS = preload("res://Card.tscn")
 
 var type
@@ -63,3 +53,16 @@ func get_drag_data(pos):
 	card.rect_scale = Vector2(0.5, 0.5)
 	set_drag_preview(card)
 	return self
+
+func _on_Background_gui_input( event ):
+	if get_parent().is_in_group("BoardCell") \
+	and event is InputEventMouseButton \
+	and event.button_index == BUTTON_RIGHT \
+	and event.is_pressed():
+		get_parent().remove_child(self)
+		Player.hand_ui.add_child(self)
+		Player.board_ui.unset_attack()
+		Player.board_ui.refresh_totals()
+
+func is_insensitive():
+	return penalties.find("Insensible") > -1

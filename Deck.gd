@@ -4,27 +4,35 @@ var hand = []
 var draw_pile = []
 var discard_pile = []
 
-var player
-
 signal card_added_to_hand(card)
 
-func init():
-	var dir_path = "res://Cards/Tier 0"
-	var dir = Directory.new()
-	dir.open(dir_path)
-	dir.list_dir_begin()
+func init(deck_data):
+	for card in deck_data:
+		for i in range(card.number):
+			draw_pile.append(card)
+	shuffle()
+
+func reset():
+	while hand.size() > 0:
+		draw_pile.append(hand.pop_front())
 	
-	while true:
-		var file = File.new()
-		var file_name = dir.get_next()
-		if file_name == "":
-			break
-		elif not file_name.begins_with("."):
-			file.open(str(dir_path, "/", file_name), file.READ)
-			draw_pile.append(parse_json(file.get_as_text()))
-			file.close()
+	while discard_pile.size() > 0:
+		draw_pile.append(discard_pile.pop_front())
 	
 	shuffle()
+
+func add_card(card, to):
+	match to:
+		"draw_pile":
+			draw_pile.append(card)
+		"discard_pile":
+			discard_pile.append(card)
+		"hand":
+			add_to_hand(card)
+
+func discard_all():
+	while hand.size() > 0:
+		discard_pile.append(hand.pop_front())
 
 func draw():
 	if draw_pile.empty():

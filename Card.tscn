@@ -17,7 +17,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="Background" type="TextureRect" parent="." index="0"]
 
@@ -34,6 +34,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 2 )
 stretch_mode = 0
+_sections_unfolded = [ "Mouse" ]
 
 [node name="Sword" type="TextureRect" parent="Background" index="0"]
 
@@ -189,5 +190,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
+
+[connection signal="gui_input" from="Background" to="." method="_on_Background_gui_input"]
 
 

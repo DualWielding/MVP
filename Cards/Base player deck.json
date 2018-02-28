@@ -1,0 +1,62 @@
+[
+	{
+		"name": "Parade",
+		"type": "Defense",
+		"value": 1,
+		"chain_top": 0,
+		"chain_bot": 0,
+		"penalties": [],
+		"bonuses": [],
+		"number": 3
+	},
+	{
+		"name": "Feinte",
+		"type": "Defense",
+		"value": 0,
+		"chain_top": 2,
+		"chain_bot": 0,
+		"penalties": [],
+		"bonuses": [],
+		"number": 3
+	},
+	{
+		"name": "Roulade",
+		"type": "Attack",
+		"value": 0,
+		"chain_top": 0,
+		"chain_bot": 2,
+		"penalties": ["Insensible"],
+		"bonuses": [],
+		"number": 3
+	},
+	{
+		"name": "Engagement",
+		"type": "Versatile",
+		"value": 0,
+		"chain_top": 1,
+		"chain_bot": 0,
+		"penalties": [],
+		"bonuses": [],
+		"number": 3
+	},
+	{
+		"name": "Pas de côté",
+		"type": "Versatile",
+		"value": 0,
+		"chain_top": 0,
+		"chain_bot": 1,
+		"penalties": [],
+		"bonuses": [],
+		"number": 3
+	},
+	{
+		"name": "Coup",
+		"type": "Attack",
+		"value": 1,
+		"chain_top": 0,
+		"chain_bot": 0,
+		"penalties": [],
+		"bonuses": [],
+		"number": 3
+	}
+]

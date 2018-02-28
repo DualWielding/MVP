@@ -18,7 +18,19 @@ config/icon="res://icon.png"
 
 Player="*res://Player.gd"
 Fight="*res://Fight.gd"
+Effects="*res://Effects.gd"
+
+[display]
+
+window/size/width=800
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/filters/use_nearest_mipmap_filter=true
+environment/default_clear_color=Color( 0.653763, 0.859375, 0.62439, 1 )
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

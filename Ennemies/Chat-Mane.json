@@ -1,0 +1,49 @@
+{
+	"type": "beast",
+	"name": "chat-mane",
+	"attack": 1,
+	"defense": 1,
+	"init": 1,
+	"hp": 6,
+	"deck": [{
+			"attack": 1,
+			"defense": 0,
+			"effects": {
+				"on_damage_taken": [{
+					"type": "Retribution",
+					"strength": 1
+				}]
+			},
+			"number": 1
+		},
+		{
+			"attack": 0,
+			"defense": 0,
+			"effects": {
+				"on_damage_taken": [{
+					"type": "Retribution",
+					"duration": 1,
+					"strength": 1
+				}],
+				"on_reveal": [{
+					"type": "Heal ally",
+					"strength": 2
+				}]
+			},
+			"number": 1
+		},
+		{
+			"attack": 2,
+			"defense": 0,
+			"effects": {
+				"on_reveal": [{
+					"type": "Boost init",
+					"duration": 1,
+					"delay": 1,
+					"strength": 3
+				}]
+			},
+			"number": 1
+		}
+	]
+}

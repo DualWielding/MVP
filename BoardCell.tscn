@@ -8,7 +8,9 @@ flags = 4
 load_path = "res://.import/Card-bg.jpg-5dd8a544c0636459ee762c8d465b76cf.stex"
 _sections_unfolded = [ "Resource" ]
 
-[node name="Cell" type="TextureRect"]
+[node name="Cell" type="TextureRect" groups=[
+"BoardCell",
+]]
 
 self_modulate = Color( 0.246094, 0.155731, 0.155731, 1 )
 anchor_left = 0.0
@@ -25,6 +27,5 @@ size_flags_vertical = 1
 texture = SubResource( 1 )
 stretch_mode = 0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Visibility" ]
 
 
