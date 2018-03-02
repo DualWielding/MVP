@@ -19,21 +19,9 @@ func drop_data(pos, card):
 	emit_signal("card_added")
 
 func calculate_value():
-	if !has_card():
-		return 0
+	if !has_card(): return 0
 	
-	var value = get_card().main_value
-	
-	if get_card().is_insensitive(): return value
-	
-	if type == "Attack":
-		if linked_cell != null and linked_cell.has_card():
-			value += linked_cell.get_card().chain_top
-	elif type == "Defense":
-		if linked_cell != null and linked_cell.has_card():
-			value += linked_cell.get_card().chain_bot
-	
-	return value
+	return get_card().main_value
 
 func get_card():
 	return get_children()[0]

@@ -3,8 +3,6 @@ extends Control
 var CARD_CLASS = preload("res://Card.tscn")
 
 var type
-var chain_top = 0
-var chain_bot = 0
 var main_value = 0
 
 var bonuses
@@ -18,8 +16,6 @@ func init(dict):
 	card_name = dict.name
 	type = dict.type
 	main_value = dict.value
-	chain_top = dict.chain_top
-	chain_bot = dict.chain_bot
 	bonuses = dict.bonuses
 	penalties = dict.penalties
 	return self
@@ -32,8 +28,6 @@ func _ready():
 	elif type == "Defense":
 		$Background/Shield.show()
 
-	$"Background/SE-Top".text = str(chain_top)
-	$"Background/SE-Bot".text = str(chain_bot)
 	$"Background/Value".text = str(main_value)
 
 	var bonus_str = ""
