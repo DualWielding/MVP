@@ -12,7 +12,7 @@ _sections_unfolded = [ "Resource" ]
 "BoardCell",
 ]]
 
-self_modulate = Color( 0.246094, 0.155731, 0.155731, 1 )
+self_modulate = Color( 0.243137, 0.152941, 0.152941, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -27,5 +27,6 @@ size_flags_vertical = 1
 texture = SubResource( 1 )
 stretch_mode = 0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
 

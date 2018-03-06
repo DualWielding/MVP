@@ -1,9 +1,0 @@
-{
-	"name": "Feinte",
-	"type": "Defense",
-	"value": 0,
-	"chain_top": 2,
-	"chain_bot": 0,
-	"penalties": [],
-	"bonuses": []
-}

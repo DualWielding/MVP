@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Monster.gd" type="Script" id=1]
 [ext_resource path="res://Images/Card-bg.jpg" type="Texture" id=2]
+[ext_resource path="res://UIMonsterHand.gd" type="Script" id=3]
 
 [node name="Monster" type="Control" groups=[
 "Enemy",
@@ -109,7 +110,7 @@ margin_top = 36.0
 margin_right = 108.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
@@ -117,6 +118,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="Defense" type="Label" parent="VBoxContainer" index="3"]
 
@@ -128,7 +130,7 @@ margin_top = 54.0
 margin_right = 108.0
 margin_bottom = 68.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
@@ -158,104 +160,22 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse" ]
 
-[node name="DrawnCards" type="TextureRect" parent="." index="4"]
+[node name="UIMonsterHand" type="Container" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 247.0
-margin_top = 1.0
-margin_right = 387.0
-margin_bottom = 199.0
-rect_rotation = 90.0
-rect_scale = Vector2( 0.6, 0.6 )
+margin_left = 131.0
+margin_top = 2.0
+margin_right = 171.0
+margin_bottom = 42.0
 rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
+mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 2 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DrawnCards" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 23.0
-margin_top = 173.0
-margin_right = 178.0
-margin_bottom = 273.0
-rect_rotation = -90.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="Attack" type="Label" parent="DrawnCards/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 155.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
-
-[node name="Defense" type="Label" parent="DrawnCards/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 155.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
-
-[node name="Effects" type="Label" parent="DrawnCards/VBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 36.0
-margin_right = 155.0
-margin_bottom = 50.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors" ]
+script = ExtResource( 3 )
 
 [connection signal="gui_input" from="BackGround" to="." method="_on_BackGround_gui_input"]
 

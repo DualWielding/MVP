@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 
 Player="*res://Player.gd"
 Fight="*res://Fight.gd"
-Effects="*res://Effects.gd"
 
 [display]
 

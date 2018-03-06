@@ -1,78 +1,71 @@
 extends Node
 
 var global_game
+var enemies
+
 var MONSTER_CLASS = preload("res://Monster.tscn")
 
 signal monster_cards_drawn
 signal init_solved
+signal initiated
 
-func start(game, ennemies):
+func start(game, enemies_names):
 	global_game = game
 	
-	for ennemy in ennemies:
+	for enemy_name in enemies_names:
 		var monster = MONSTER_CLASS.instance()
-		monster.monster_name = ennemy
-		global_game.get_node("Ennemies").add_child(monster)
+		monster.monster_name = enemy_name
+		enemies.add_child(monster)
 		monster.connect("ennemy_mouse_entered", Player.arrow_ui, "snap")
 		monster.connect("ennemy_mouse_exited", Player.arrow_ui, "unsnap")
-	start_turn()
+	start_round()
 
-func start_turn():
-	if Player.hp_current > 0 and global_game.get_node("Ennemies").get_child_count() > 0:
-		initiate_new_turn()
-		Player.draw_cards()
-		draw_monster_cards("inf")
-		yield(Player, "target_selected") # Managed in board, I should change that
-		Player.calculate_attack_and_defense()
-		draw_monster_cards("sup")
-		next_turn() # Start the next turn once the init is solved
+func start_round():
+	if Player.hp_current > 0 and enemies.get_child_count() > 0:
+		initiate_new_round()
+		yield(Player, "ready_for_attack") # Managed in board, I should change that
+		next_round() # Start the next turn once the init is solved
 		resolve_init()
 	else:
 		end()
 
-func next_turn():
+func next_round():
 	yield(self, "init_solved")
-	start_turn()
+	start_round()
 
-func draw_monster_cards(init):
-	for monster in global_game.get_node("Ennemies").get_children():
-		if init == "inf" and monster.init <= Player.init \
-		or init == "sup" and monster.init > Player.init:
-			monster.draw_card()
-
+func draw_monster_cards():
+	for monster in enemies.get_children():
+		monster.draw_card()
 
 func resolve_init():
-	var init = {}
-	init[Player.init] = [Player]
-	for ennemy in global_game.get_node("Ennemies").get_children():
-		if init.has(ennemy.init):
-			init[ennemy.init].append(ennemy)
-		else:
-			init[ennemy.init] = [ennemy]
-	
-	var init_values = init.keys()
-	init_values.sort()
-	init_values.invert()
-	
-	for init_value in init_values:
-		for character in init[init_value]:
-			if character.hp_current > 0:
-				character.attack()
+	var init_levels = [Player.init_levels.fast, Player.init_levels.normal, Player.init_levels.slow]
+	for init_level in init_levels:
+		if Player.init_current == init_level:
+			Player.start_turn()
+		for enemy in enemies.get_children():
+			if enemy.init_current == init_level:
+				enemy.start_turn()
 	
 	emit_signal("init_solved")
 
-func initiate_new_turn():
-	for ennemy in global_game.get_node("Ennemies").get_children():
-		ennemy.deck.discard_all()
+func initiate_new_round():
+	for enemy in enemies.get_children():
+		enemy.reset_attack()
+		enemy.reset_defense()
+		enemy.reset_init()
+		enemy.deck.discard_hand()
 	
-	Player.deck.discard_all()
-	Player.board_ui.clear()
-	Player.board_ui.refresh_totals()
-	Player.attack = 0
-	Player.defense = 0
+	Player.deck.discard_hand()
+	Player.deck.ui.get_node("Board").clear()
+	Player.reset_attack()
+	Player.reset_defense()
+	Player.reset_init()
 	Player.target = null
 	Player.can_attack = false
 	Player.arrow_ui.reset()
+	
+	Player.draw_cards(Player.DRAW_CARDS_NUMBER)
+	draw_monster_cards()
 
 func end():
 	get_parent().next_fight()

@@ -5,43 +5,29 @@
 	"defense": 1,
 	"init": 1,
 	"hp": 6,
-	"deck": [{
-			"attack": 1,
-			"defense": 0,
-			"effects": {
-				"on_damage_taken": [{
-					"type": "Retribution",
-					"strength": 1
-				}]
+	"deck": [
+		{
+			"on_play": {
+				"gain_attack": 1
+			},
+			"on_possessor_hp_lost": {
+				"retaliation": 1
 			},
 			"number": 1
 		},
 		{
-			"attack": 0,
-			"defense": 0,
-			"effects": {
-				"on_damage_taken": [{
-					"type": "Retribution",
-					"duration": 1,
-					"strength": 1
-				}],
-				"on_reveal": [{
-					"type": "Heal ally",
-					"strength": 2
-				}]
+			"on_play": {
+				"heal_ally": 2
+			},
+			"on_possessor_hp_lost": {
+				"retaliation": 1
 			},
 			"number": 1
 		},
 		{
-			"attack": 2,
-			"defense": 0,
-			"effects": {
-				"on_reveal": [{
-					"type": "Boost init",
-					"duration": 1,
-					"delay": 1,
-					"strength": 3
-				}]
+			"on_play": {
+				"gain_attack": 2,
+				"first_strike": 1
 			},
 			"number": 1
 		}

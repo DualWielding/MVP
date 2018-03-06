@@ -1,62 +1,52 @@
 [
 	{
-		"name": "Parade",
-		"type": "Defense",
-		"value": 1,
-		"chain_top": 0,
-		"chain_bot": 0,
-		"penalties": [],
-		"bonuses": [],
-		"number": 3
+		"name": "parry",
+		"type": "defense",
+		"on_play": { "gain_defense": 1 },
+		"number": 5
 	},
 	{
-		"name": "Feinte",
-		"type": "Defense",
-		"value": 0,
-		"chain_top": 2,
-		"chain_bot": 0,
-		"penalties": [],
-		"bonuses": [],
-		"number": 3
+		"name": "minor_heal",
+		"type": "defense",
+		"on_play": {
+			"gain_defense": 1,
+			"defensive_exhaustion": 1,
+			"create_heal_card": 1
+		},
+		"number": 2
 	},
 	{
-		"name": "Roulade",
-		"type": "Attack",
-		"value": 0,
-		"chain_top": 0,
-		"chain_bot": 2,
-		"penalties": ["Insensible"],
-		"bonuses": [],
-		"number": 3
+		"name": "stand_your_ground",
+		"type": "defense",
+		"on_play": {
+			"gain_defense": 2,
+			"defensive_exhaustion": 1
+		},
+		"number": 2
 	},
 	{
-		"name": "Engagement",
-		"type": "Versatile",
-		"value": 0,
-		"chain_top": 1,
-		"chain_bot": 0,
-		"penalties": [],
-		"bonuses": [],
-		"number": 3
+		"name": "furious_blow",
+		"type": "attack",
+		"on_play": {
+			"gain_attack": 2,
+			"offensive_exhaustion": 1
+		},
+		"number": 2
 	},
 	{
-		"name": "Pas de côté",
-		"type": "Versatile",
-		"value": 0,
-		"chain_top": 0,
-		"chain_bot": 1,
-		"penalties": [],
-		"bonuses": [],
-		"number": 3
+		"name": "spark",
+		"type": "attack",
+		"on_play": {
+			"gain_attack": 1,
+			"offensive_exhaustion": 1,
+			"create_ignite_card": 1
+		},
+		"number": 2
 	},
 	{
-		"name": "Coup",
-		"type": "Attack",
-		"value": 1,
-		"chain_top": 0,
-		"chain_bot": 0,
-		"penalties": [],
-		"bonuses": [],
-		"number": 3
+		"name": "hit",
+		"type": "attack",
+		"on_play": { "gain_attack": 1 },
+		"number": 5
 	}
 ]

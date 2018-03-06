@@ -1,9 +1,0 @@
-{
-	"name": "Coup",
-	"type": "Attack",
-	"value": 1,
-	"chain_top": 0,
-	"chain_bot": 0,
-	"penalties": [],
-	"bonuses": []
-}
