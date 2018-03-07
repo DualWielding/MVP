@@ -56,6 +56,12 @@ func _on_BackGround_gui_input( event ):
 # UI related
 ##############
 
+func ui_update_draw_pile():
+	$UIMonsterDrawPile.text = str(deck.draw_pile.size())
+
+func ui_update_discard_pile():
+	pass
+
 func ui_update_defense():
 	$VBoxContainer/Defense.text = str("Def : ", defense_current)
 	$VBoxContainer/Defense.hint_tooltip = str(defense_base, " + ", defense_current - defense_base)
@@ -76,6 +82,7 @@ func update_hp(value):
 
 func die():
 	dead = true
+	Player.current_fight.check_for_end()
 	get_parent().remove_child(self)
 	for card in deck.hand:
 		card.queue_free()

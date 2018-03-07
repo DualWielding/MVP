@@ -1,7 +1,7 @@
 extends Control
 
 const fights_path = "res://Fights/Fights.json"
-const FIGHT_CLASS = preload("res://Fight.gd")
+const FIGHT_CLASS = preload("res://Fight.tscn")
 
 var fights
 var current_fight
@@ -28,7 +28,7 @@ func next_fight():
 func new_fight():
 	Player.deck.reset()
 	Player.update_hp(Player.hp_max - Player.hp_current)
-	current_fight = FIGHT_CLASS.new()
-	current_fight.enemies = $Enemies
-	current_fight.start(self, fights[current_fight_index])
+	current_fight = FIGHT_CLASS.instance()
+	Player.current_fight = current_fight
 	add_child(current_fight)
+	current_fight.start(self, fights[current_fight_index])

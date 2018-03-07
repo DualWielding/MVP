@@ -1,7 +1,7 @@
 extends Node
 
 var global_game
-var enemies
+onready var enemies = $Enemies
 
 var MONSTER_CLASS = preload("res://Monster.tscn")
 
@@ -10,6 +10,7 @@ signal init_solved
 signal initiated
 
 func start(game, enemies_names):
+	print(get_parent())
 	global_game = game
 	
 	for enemy_name in enemies_names:
@@ -21,13 +22,10 @@ func start(game, enemies_names):
 	start_round()
 
 func start_round():
-	if Player.hp_current > 0 and enemies.get_child_count() > 0:
-		initiate_new_round()
-		yield(Player, "ready_for_attack") # Managed in board, I should change that
-		next_round() # Start the next turn once the init is solved
-		resolve_init()
-	else:
-		end()
+	initiate_new_round()
+	yield(Player, "ready_for_attack") # Managed in board, I should change that
+	next_round() # Start the next turn once the init is solved
+	resolve_init()
 
 func next_round():
 	yield(self, "init_solved")
@@ -66,6 +64,11 @@ func initiate_new_round():
 	
 	Player.draw_cards(Player.DRAW_CARDS_NUMBER)
 	draw_monster_cards()
+
+func check_for_end():
+	for enemy in enemies.get_children():
+		if !enemy.dead: return
+	end()
 
 func end():
 	get_parent().next_fight()

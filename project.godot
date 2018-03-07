@@ -17,7 +17,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Player="*res://Player.gd"
-Fight="*res://Fight.gd"
 
 [display]
 

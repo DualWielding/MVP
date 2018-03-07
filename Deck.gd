@@ -54,6 +54,7 @@ func reset():
 		if card.type == "consumable":
 			remove_card(card)
 	
+	possessor.ui_update_draw_pile()
 	shuffle()
 
 func shuffle(array = draw_pile):
@@ -74,6 +75,8 @@ func shuffle(array = draw_pile):
 func refill_draw_pile():
 	draw_pile = discard_pile
 	discard_pile = []
+	
+	possessor.ui_update_draw_pile()
 	shuffle()
 
 ##############
@@ -84,6 +87,7 @@ func draw():
 	if draw_pile.empty():
 		refill_draw_pile()
 	var card = draw_pile.pop_front()
+	possessor.ui_update_draw_pile()
 	add_to_hand(card)
 
 func add_to_hand(card):
@@ -124,3 +128,6 @@ func shuffle_card_to(card, to):
 	else:
 		var place = randi() % to.size()
 		to.insert(place, card)
+	
+	if to == draw_pile:
+		possessor.ui_update_draw_pile()

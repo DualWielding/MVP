@@ -4,6 +4,7 @@ const CARD_CLASS = preload("res://Cards/PlayerBoardCard.tscn")
 const DRAW_CARDS_NUMBER = 5
 
 var nick = "Player"
+var current_fight
 
 export var base_deck_path = "res://Cards/Base player deck.json"
 

@@ -113,5 +113,11 @@ func update_init(init_level):
 func reset_init():
 	init_current = init_base
 
+func ui_update_discard_pile():
+	pass
+
+func ui_update_draw_pile():
+	pass
+
 func die():
 	queue_free()
