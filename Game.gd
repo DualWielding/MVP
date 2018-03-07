@@ -19,6 +19,7 @@ func _ready():
 
 func next_fight():
 	remove_child(current_fight)
+	current_fight.queue_free()
 	current_fight_index += 1
 	if current_fight_index > fights.size():
 		get_tree().quit()

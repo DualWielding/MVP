@@ -10,7 +10,6 @@ signal init_solved
 signal initiated
 
 func start(game, enemies_names):
-	print(get_parent())
 	global_game = game
 	
 	for enemy_name in enemies_names:

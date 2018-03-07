@@ -49,6 +49,7 @@ func start_turn():
 	attack()
 
 func attack():
+	print(name, " ATTACK : ", target)
 	emit_signal("attack", {"target": target})
 	var damages = attack_current
 	if damages < 0: damages = 0
