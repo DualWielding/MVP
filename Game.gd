@@ -21,7 +21,7 @@ func next_fight():
 	remove_child(current_fight)
 	current_fight.queue_free()
 	current_fight_index += 1
-	if current_fight_index > fights.size():
+	if current_fight_index >= fights.size():
 		get_tree().quit()
 	else:
 		new_fight()
@@ -32,4 +32,5 @@ func new_fight():
 	current_fight = FIGHT_CLASS.instance()
 	Player.current_fight = current_fight
 	add_child(current_fight)
+	move_child(current_fight, 1)
 	current_fight.start(self, fights[current_fight_index])

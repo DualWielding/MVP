@@ -43,6 +43,6 @@ func update_effects_label():
 			if effect.name != "gain_attack" \
 			and effect.name != "gain_defense" \
 			and effect.name != "gain_attack_or_defense":
-				triggers_str = str(triggers_str, effect.name, "(", effect.strength, ")\n")
+				triggers_str = str(triggers_str, tr(effect.name), " ", effect.strength, "\n")
 	
 	$Labels/Effects.text = triggers_str

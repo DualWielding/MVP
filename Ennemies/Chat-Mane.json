@@ -16,7 +16,7 @@
 			"number": 1
 		},
 		{
-			"on_play": {
+			"on_possessor_turn": {
 				"heal_ally": 2
 			},
 			"on_possessor_hp_lost": {

@@ -33,6 +33,8 @@ signal hp_lost(data)
 signal attack(data)
 signal enemy_hp_lost(data)
 
+#signal turn_over
+
 ##############
 # Deck
 ##############
@@ -47,9 +49,9 @@ func draw_card():
 func start_turn():
 	emit_signal("start_turn", {})
 	attack()
+#	emit_signal("turn_over")
 
 func attack():
-	print(name, " ATTACK : ", target)
 	emit_signal("attack", {"target": target})
 	var damages = attack_current
 	if damages < 0: damages = 0

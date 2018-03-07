@@ -100,6 +100,11 @@ func add_to_hand(card):
 # Discard pile
 ##############
 
+func discard_unplayed_cards():
+	for card in hand:
+		if not card.played:
+			discard(hand, card)
+
 func discard_hand():
 	while hand.size() > 0:
 		var card = hand[0]
@@ -114,6 +119,7 @@ func discard(from, card):
 	
 	# Card can be either in hand or in cell
 	if from == hand:
+		card.played = false
 		card.exit_hand() # Disable the card triggers
 		ui.discard_card(card)
 
@@ -126,7 +132,7 @@ func shuffle_card_to(card, to):
 	if to.size() == 0:
 		to.append(card)
 	else:
-		var place = randi() % to.size()
+		var place = (randi() % (to.size()+1))-1 # To have the 1st and last place.
 		to.insert(place, card)
 	
 	if to == draw_pile:

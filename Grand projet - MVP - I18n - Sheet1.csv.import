@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Grand projet - MVP - I18n - Sheet1.en.translation", "res://Grand projet - MVP - I18n - Sheet1.fr.translation" ]
+
+source_file="res://Grand projet - MVP - I18n - Sheet1.csv"
+source_md5="88e2611491b6548dec31291059213bc1"
+
+dest_files=[ "res://Grand projet - MVP - I18n - Sheet1.en.translation", "res://Grand projet - MVP - I18n - Sheet1.fr.translation" ]
+dest_md5="c77bc084683bc34cf1515291e825a27b"
+
+[params]
+
+compress=true
+delimiter=0

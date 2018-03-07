@@ -35,13 +35,16 @@ func draw_monster_cards():
 		monster.draw_card()
 
 func resolve_init():
+	Player.deck.discard_unplayed_cards()
 	var init_levels = [Player.init_levels.fast, Player.init_levels.normal, Player.init_levels.slow]
 	for init_level in init_levels:
 		if Player.init_current == init_level:
 			Player.start_turn()
+#			yield(Player, "turn_over")
 		for enemy in enemies.get_children():
 			if enemy.init_current == init_level:
 				enemy.start_turn()
+#				yield(enemy, "turn_over")
 	
 	emit_signal("init_solved")
 

@@ -5,6 +5,7 @@ var possessor
 var locked = false
 var consumable_player_card_class
 var consumable_monster_card_class
+var played = false
 
 func _ready():
 		consumable_player_card_class = load("res://Cards/PlayerConsumableCard.tscn")
@@ -19,13 +20,13 @@ class Effect:
 		# Player
 		"consume",
 		"create_heal_card",
-		"create_ignite_card",
+		"create_bleed_card",
 		"create_wound_card",
 		"defensive_exhaustion",
 		"draw_card",
 		"gain_attack_or_defense",
-		"lightning_speed",
 		"offensive_exhaustion",
+		"overpower",
 		
 		# Monsters
 		"heal_ally",
@@ -37,8 +38,8 @@ class Effect:
 		"gain_attack",
 		"gain_defense",
 		"heal_self",
-		"ignite_self",
-		"ignite_enemy",
+		"bleed",
+		"bleeding",
 		"retaliation",
 		"slow",
 		"test"
@@ -68,7 +69,6 @@ func trigger_effect(effect, data):
 			yield(ap, "animation_finished")
 			possessor.deck.remove_card(self)
 		"create_heal_card":
-			locked = true
 			var card 
 			if possessor == Player:
 				card = consumable_player_card_class.instance()
@@ -77,8 +77,7 @@ func trigger_effect(effect, data):
 			card.init("heal_self", strength)
 			card.possessor = possessor
 			possessor.deck.shuffle_card_to(card, possessor.deck.draw_pile)
-		"create_ignite_card":
-			locked = true
+		"create_bleed_card":
 			Player.deck.ui.board.set_target()
 			yield(Player, "target_selected")
 			var card 
@@ -86,7 +85,7 @@ func trigger_effect(effect, data):
 				card = consumable_monster_card_class.instance()
 			else:
 				card = consumable_player_card_class.instance()
-			card.init("ignite_self", strength)
+			card.init("bleed", strength)
 			card.possessor = self.possessor.target
 			card.possessor.deck.shuffle_card_to(card, card.possessor.deck.draw_pile)
 			Player.target = null
@@ -107,7 +106,6 @@ func trigger_effect(effect, data):
 		"heal_ally":
 			for monster in get_tree().get_nodes_in_group("Enemy"):
 				if monster != possessor and monster.hp_current < monster.hp_max:
-					print(possessor, " healed ", monster, "for ", strength, "hp.")
 					monster.update_hp(strength)
 					break
 		"reduce_player_attack":
@@ -115,10 +113,8 @@ func trigger_effect(effect, data):
 		"reduce_player_defense":
 			Player.update_defense(-strength)
 		"retaliation":
-			print("DAAAAAAAAAAAAAATAAAAAAAAAAA", data)
 			if data.has("attacker") and data.attacker != null:
 				data.attacker.get_hit(null, strength)
-				print("Retaliation for ", strength, " hp.")
 		
 		# Both
 		"first_strike":
@@ -129,7 +125,7 @@ func trigger_effect(effect, data):
 			possessor.update_defense(strength)
 		"heal_self":
 			possessor.update_hp(strength)
-		"ignite_self":
+		"bleed":
 			possessor.get_hit(null, strength, true)
 		"test":
 			print(effect_name, ": ", "Okay !")
@@ -158,6 +154,7 @@ func trigger(data, trigger_name):
 		trigger_effect(effect, data)
 
 func played():
+	played = true
 	trigger({}, "on_play")
 
 func enter_hand(): # Triggered in deck

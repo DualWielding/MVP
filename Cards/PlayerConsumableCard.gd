@@ -9,8 +9,8 @@ func init(main_effect_name, main_effect_strength):
 	
 	# Add effects
 	triggers.on_draw.append(main_effect)
-	triggers.on_draw.append(Effect.new().init("draw_card", 1))
 	triggers.on_draw.append(Effect.new().init("consume", 1))
+	triggers.on_draw.append(Effect.new().init("draw_card", 1))
 
 func _ready():
 	ap = $AnimationPlayer
@@ -19,7 +19,7 @@ func _ready():
 	
 	if main_effect.name == "heal_self":
 		$Background/Cross.show()
-	elif main_effect.name == "ignite_self":
+	elif main_effect.name == "bleed":
 		$Background/Flame.show()
 	
 	$Background/Labels/Value.text = str(main_effect.strength)

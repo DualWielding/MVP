@@ -1,0 +1,19 @@
+id,en,fr
+consume,Consume,Brule Mana
+create_heal_card,Heal,Soin
+create_bleed_card,Bleeding,Hemorragie
+defensive_exhaustion,DEF burn,Brule DEF
+draw_card,Draw,Pioche
+offensive_exhaustion,ATK burn,Brule ATQ
+overpower,Overpower,Fulgurance
+,,
+heal_ally,Heal ally,Soin d'allié
+reduce_player_attack,ATK reduction,Diminution ATQ
+reduce_player_defense,DEF reduction,Diminution DEF
+,,
+first_strike,First strike,Initiative
+heal_self,Heal,Soin
+bleed,Bleed,Saignement
+bleeding,Bleeding,Hemorragie
+retaliation,Retaliation,Représaille
+slow,Slow,Lenteur

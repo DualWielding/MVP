@@ -25,6 +25,12 @@ window/size/fullscreen=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
+[locale]
+
+test="fr"
+translations=PoolStringArray( "res://Grand projet - MVP - I18n - Sheet1.en.translation", "res://Grand projet - MVP - I18n - Sheet1.fr.translation" )
+locale_filter=[ 0, [  ] ]
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
